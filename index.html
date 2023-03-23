@@ -1,6 +1,40 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://www.skulpt.org/static/skulpt.min.js"></script>
+    <script src="https://www.skulpt.org/static/skulpt-stdlib.js"></script>
+  </head>
+  <body>
+    <h1>Python Terminal Emulator</h1>
+    <div>
+      <label for="input">Input:</label>
+      <input type="text" id="input" />
+      <button id="run-btn">Run</button>
+    </div>
+    <div>
+      <label for="output">Output:</label>
+      <textarea id="output" rows="10" cols="50" readonly></textarea>
+    </div>
+    <script type="text/javascript">
+      function outf(text) {
+        var output = document.getElementById("output");
+        output.value = output.value + text;
+      }
+      function runCode() {
+        var prog = document.getElementById("input").value;
+        Sk.configure({output:outf});
+        Sk.importMainWithBody("<stdin>", false, prog);
+      }
+      $(document).ready(function() {
+        $("#run-btn").click(function() {
+          runCode();
+        });
+      });
+    </script>
+  </body>
+  
+  <head>
     <title>My Website 2</title>
     <style>
       header {
