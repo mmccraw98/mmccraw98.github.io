@@ -95,6 +95,8 @@ h1 {
     color: #ffff00; /* Yellow */
     text-decoration: none;
     font-family: 'Press Start 2P', cursive;
+    display: inline-block; /* Ensure the link is inline-block */
+    padding: 0; /* Remove any padding */
 }
 .see-more:hover {
     text-decoration: underline;
