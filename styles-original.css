@@ -10,7 +10,7 @@ body {
 }
 nav {
     width: 100%;
-    background-color: #e500e5; /* Bright magenta */
+    background-color: #ff00ff; /* Bright magenta */
     padding: 10px 0;
     text-align: center;
     border-bottom: 5px dashed #00ff00; /* Green dashed border */
@@ -32,7 +32,7 @@ nav a:hover {
     align-items: center;
     padding: 20px;
     background-color: #222; /* Dark gray */
-    border: 5px dotted #e500e5; /* Magenta dotted border */
+    border: 5px dotted #ff00ff; /* Magenta dotted border */
 }
 h1 {
     font-size: 2.5em;
@@ -44,7 +44,7 @@ h1 {
     margin-bottom: 20px;
 }
 .project {
-    background-color: #00da00; /* Green background */
+    background-color: #00ff00; /* Green background */
     border: 3px solid #ff0000; /* Red border */
     padding: 15px;
     margin: 10px 0;
@@ -61,7 +61,7 @@ h1 {
 .project h2 {
     margin: 0;
     font-size: 1.5em;
-    color: #e500e5; /* Magenta */
+    color: #ff00ff; /* Magenta */
 }
 .date {
     font-size: 1em;
@@ -73,7 +73,7 @@ h1 {
 }
 .keyword {
     display: inline-block;
-    background-color: #e500e5; /* Magenta */
+    background-color: #ff00ff; /* Magenta */
     border: 2px dashed #00ff00; /* Green dashed border */
     padding: 5px 10px;
     margin-right: 5px;
@@ -87,7 +87,7 @@ h1 {
     background-color: #0000ff; /* Blue background */
     color: #ffffff; /* White text */
     padding: 10px;
-    border: 2px solid #e500e5; /* Magenta border */
+    border: 2px solid #ff00ff; /* Magenta border */
 }
 .see-more {
     display: none;
