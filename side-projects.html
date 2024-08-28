@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Retro Personal Website</title>
+    <title>Side Projects</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Comic+Sans+MS&display=swap');
 
@@ -31,9 +31,9 @@
         }
         .container {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: calc(100vh - 60px);
+            padding: 20px;
         }
         h1 {
             font-size: 2.5em;
@@ -41,6 +41,15 @@
             padding: 20px;
             background-color: rgba(0, 0, 0, 0.8);
             box-shadow: 0 0 10px #ffffff;
+            margin-bottom: 20px;
+        }
+        .project {
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 2px solid #ffffff;
+            padding: 15px;
+            margin: 10px 0;
+            width: 80%;
+            box-shadow: 0 0 5px #ffffff;
         }
     </style>
 </head>
@@ -51,7 +60,16 @@
         <a href="python-terminal.html">Python Terminal</a>
     </nav>
     <div class="container">
-        <h1>Your Name</h1>
+        <h1>Side Projects</h1>
+        <div class="project">
+            <h2>Project 1</h2>
+            <p>Description of project 1.</p>
+        </div>
+        <div class="project">
+            <h2>Project 2</h2>
+            <p>Description of project 2.</p>
+        </div>
+        <!-- Add more projects as needed -->
     </div>
 </body>
 </html>
