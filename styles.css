@@ -1,47 +1,57 @@
 @import url('https://fonts.googleapis.com/css2?family=Comic+Sans+MS&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 body {
     font-family: 'Comic Sans MS', cursive, sans-serif;
     margin: 0;
-    background: linear-gradient(135deg, #000, #333);
+    background-color: #000; /* Solid black background */
     color: #ffffff;
 }
 nav {
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: #ff00ff; /* Bright magenta */
     padding: 10px 0;
     text-align: center;
-    border-bottom: 3px solid #ffffff;
+    border-bottom: 5px dashed #00ff00; /* Green dashed border */
 }
 nav a {
-    color: #ffffff;
+    color: #00ffff; /* Cyan */
     text-decoration: none;
     margin: 0 15px;
     font-size: 1.2em;
+    font-family: 'Press Start 2P', cursive;
 }
 nav a:hover {
     text-decoration: underline;
+    color: #ff0000; /* Red on hover */
 }
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    background-color: #222; /* Dark gray */
+    border: 5px dotted #ff00ff; /* Magenta dotted border */
 }
 h1 {
     font-size: 2.5em;
-    border: 3px solid #ffffff;
+    border: 5px double #00ffff; /* Cyan double border */
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: #ff0000; /* Red background */
+    color: #000; /* Black text */
+    font-family: 'Courier Prime', monospace;
     margin-bottom: 20px;
 }
 .project {
-    background-color: rgba(0, 0, 0, 0.8);
-    border: 2px solid #ffffff;
+    background-color: #00ff00; /* Green background */
+    border: 3px solid #ff0000; /* Red border */
     padding: 15px;
     margin: 10px 0;
     width: 80%;
     cursor: pointer;
+    color: #000; /* Black text */
+    font-family: 'Press Start 2P', cursive;
 }
 .project-header {
     display: flex;
@@ -50,32 +60,42 @@ h1 {
 }
 .project h2 {
     margin: 0;
+    font-size: 1.5em;
+    color: #ff00ff; /* Magenta */
 }
 .date {
-    font-size: 0.9em;
-    color: #cccccc;
+    font-size: 1em;
+    color: #00ffff; /* Cyan */
 }
 .keywords {
     margin: 10px 0;
 }
 .keyword {
     display: inline-block;
-    background-color: #444;
-    border: 1px solid #ffffff;
+    background-color: #ff00ff; /* Magenta */
+    border: 2px dashed #00ff00; /* Green dashed border */
     padding: 5px 10px;
     margin-right: 5px;
-    border-radius: 5px;
+    border-radius: 10px;
+    color: #000; /* Black text */
+    font-family: 'Courier Prime', monospace;
 }
 .description {
     display: none;
     margin-top: 10px;
+    background-color: #0000ff; /* Blue background */
+    color: #ffffff; /* White text */
+    padding: 10px;
+    border: 2px solid #ff00ff; /* Magenta border */
 }
 .see-more {
     display: none;
     margin-top: 10px;
-    color: #00ff00;
+    color: #ffff00; /* Yellow */
     text-decoration: none;
+    font-family: 'Press Start 2P', cursive;
 }
 .see-more:hover {
     text-decoration: underline;
+    color: #ff0000; /* Red on hover */
 }
