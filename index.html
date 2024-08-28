@@ -4,54 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Retro Personal Website</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Comic+Sans+MS&display=swap');
-
-        body {
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            margin: 0;
-            background: linear-gradient(135deg, #000, #333);
-            color: #ffffff;
-        }
-        nav {
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 10px 0;
-            text-align: center;
-            box-shadow: 0 0 10px #ffffff;
-        }
-        nav a {
-            color: #ffffff;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 1.2em;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: calc(100vh - 60px);
-        }
-        h1 {
-            font-size: 2.5em;
-            border: 3px solid #ffffff;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.8);
-            box-shadow: 0 0 10px #ffffff;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="side-projects.html">Side Projects</a>
-        <a href="python-terminal.html">Python Terminal</a>
-    </nav>
+    <div w3-include-html="navbar.html"></div>
     <div class="container">
         <h1>Your Name</h1>
     </div>
+    <script>
+        function includeHTML() {
+            var z, i, elmnt, file, xhttp;
+            z = document.getElementsByTagName("*");
+            for (i = 0; i < z.length; i++) {
+                elmnt = z[i];
+                file = elmnt.getAttribute("w3-include-html");
+                if (file) {
+                    xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            elmnt.innerHTML = this.responseText;
+                            elmnt.removeAttribute("w3-include-html");
+                            includeHTML();
+                        }
+                    }
+                    xhttp.open("GET", file, true);
+                    xhttp.send();
+                    return;
+                }
+            }
+        }
+        includeHTML();
+    </script>
 </body>
 </html>

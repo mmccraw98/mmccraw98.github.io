@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Sans+MS&display=swap');
+
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    margin: 0;
+    background: linear-gradient(135deg, #000, #333);
+    color: #ffffff;
+}
+nav {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px 0;
+    text-align: center;
+    border-bottom: 3px solid #ffffff;
+}
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.2em;
+}
+nav a:hover {
+    text-decoration: underline;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+h1 {
+    font-size: 2.5em;
+    border: 3px solid #ffffff;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 20px;
+}
+.project {
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 2px solid #ffffff;
+    padding: 15px;
+    margin: 10px 0;
+    width: 80%;
+    cursor: pointer;
+}
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.project h2 {
+    margin: 0;
+}
+.date {
+    font-size: 0.9em;
+    color: #cccccc;
+}
+.keywords {
+    margin: 10px 0;
+}
+.keyword {
+    display: inline-block;
+    background-color: #444;
+    border: 1px solid #ffffff;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+.description {
+    display: none;
+    margin-top: 10px;
+}
+.see-more {
+    display: none;
+    margin-top: 10px;
+    color: #00ff00;
+    text-decoration: none;
+}
+.see-more:hover {
+    text-decoration: underline;
+}
