@@ -65,7 +65,8 @@ h1 {
 }
 .date {
     font-size: 1em;
-    color: #00ffff; /* Cyan */
+    color: #ffff00; /* Yellow */
+    font-family: 'Press Start 2P', cursive;
 }
 .keywords {
     margin: 10px 0;
