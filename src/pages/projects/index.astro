@@ -1,0 +1,84 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getProjects } from '../../lib/projects';
+
+const projects = await getProjects();
+const tags = [...new Set(projects.flatMap((p) => p.data.tags))].sort();
+---
+
+<Base title="Projects" description="Interactive write-ups of research and side projects.">
+  <section class="container">
+    <header>
+      <h1>Projects</h1>
+      <p>Write-ups with derivations, interactive figures, and animations. Most figures respond to the sliders beside them.</p>
+    </header>
+    {
+      tags.length > 1 && (
+        <div class="filters" role="group" aria-label="Filter by tag">
+          <button class="chip active" data-tag="">All</button>
+          {tags.map((t) => <button class="chip" data-tag={t}>{t}</button>)}
+        </div>
+      )
+    }
+    <div class="grid">
+      {projects.map((p) => (
+        <div data-tags={p.data.tags.join('|')}>
+          <ProjectCard project={p} />
+        </div>
+      ))}
+    </div>
+  </section>
+</Base>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filters button');
+  buttons.forEach((b) =>
+    b.addEventListener('click', () => {
+      const tag = b.dataset.tag;
+      buttons.forEach((x) => x.classList.toggle('active', x === b));
+      document.querySelectorAll<HTMLElement>('[data-tags]').forEach((el) => {
+        el.hidden = !!tag && !el.dataset.tags!.split('|').includes(tag);
+      });
+    }),
+  );
+</script>
+
+<style>
+  header {
+    padding: 3.5rem 0 1.5rem;
+  }
+  h1 {
+    font-size: 2.25rem;
+    margin: 0 0 0.5rem;
+  }
+  header p {
+    color: var(--ink-2);
+    max-width: 38rem;
+    margin: 0;
+  }
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
+  }
+  .filters button {
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.8rem;
+  }
+  .filters button.active {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+    gap: 1.25rem;
+  }
+  .grid > div {
+    display: grid;
+  }
+</style>

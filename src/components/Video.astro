@@ -1,0 +1,15 @@
+---
+/**
+ * Pre-rendered animation (e.g. from matplotlib's anim.save('x.mp4') or manim).
+ * Put the file in /public/media/<project>/ and pass src="/media/<project>/x.mp4".
+ */
+interface Props {
+  src: string;
+  poster?: string;
+  width?: number;
+  controls?: boolean;
+}
+const { src, poster, width, controls = true } = Astro.props;
+---
+
+<video src={src} poster={poster} width={width} autoplay loop muted playsinline controls={controls} preload="metadata"></video>

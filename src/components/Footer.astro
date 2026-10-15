@@ -1,0 +1,41 @@
+---
+import { site } from '../site.config';
+---
+
+<footer>
+  <div class="container">
+    <span>© {new Date().getFullYear()} {site.name}</span>
+    <span class="links">
+      {site.links.github && <a href={site.links.github}>GitHub</a>}
+      {site.links.scholar && <a href={site.links.scholar}>Scholar</a>}
+      {site.links.email && <a href={`mailto:${site.links.email}`}>Email</a>}
+    </span>
+  </div>
+</footer>
+
+<style>
+  footer {
+    margin-top: 6rem;
+    border-top: 1px solid var(--rule);
+    padding: 2rem 0 3rem;
+    font-size: 0.875rem;
+    color: var(--ink-3);
+  }
+  .container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .links {
+    display: flex;
+    gap: 1rem;
+  }
+  a {
+    color: var(--ink-3);
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--ink);
+  }
+</style>

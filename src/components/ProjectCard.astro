@@ -1,0 +1,86 @@
+---
+import { Image } from 'astro:assets';
+import { slugOf, formatDate, type Project } from '../lib/projects';
+
+interface Props {
+  project: Project;
+}
+const { project } = Astro.props;
+const { title, summary, date, tags, cover, draft } = project.data;
+---
+
+<a class="card" href={`/projects/${slugOf(project)}/`}>
+  {cover && <Image src={cover} alt="" class="cover" width={720} />}
+  <div class="body">
+    <div class="meta">
+      <span>{formatDate(date)}</span>
+      {draft && <span class="draft">Draft</span>}
+    </div>
+    <h3>{title}</h3>
+    <p>{summary}</p>
+    <div class="tags">{tags.map((t) => <span class="chip">{t}</span>)}</div>
+  </div>
+</a>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition:
+      border-color 0.15s,
+      transform 0.15s,
+      box-shadow 0.15s;
+  }
+  .card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px -12px rgb(0 0 0 / 0.25);
+    color: inherit;
+  }
+  .cover {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-bottom: 1px solid var(--rule);
+  }
+  .body {
+    padding: 1.1rem 1.25rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+  }
+  .meta {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--ink-3);
+  }
+  .draft {
+    color: var(--series-2);
+    font-weight: 600;
+  }
+  h3 {
+    margin: 0;
+    font-size: 1.15rem;
+  }
+  p {
+    margin: 0;
+    color: var(--ink-2);
+    font-size: 0.95rem;
+    flex: 1;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 0.4rem;
+  }
+</style>

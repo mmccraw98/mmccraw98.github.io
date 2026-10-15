@@ -1,0 +1,84 @@
+---
+title: Phase Transitions in the 2D Ising Model
+summary: Metropolis Monte Carlo for the square-lattice Ising model, checked against Onsager's exact solution, with a live simulation you can heat and cool.
+date: 2026-07-15
+tags: [Statistical Mechanics, Monte Carlo, Example]
+featured: true
+---
+
+import Figure from '../../../components/Figure.astro';
+import Derivation from '../../../components/Derivation.astro';
+import Callout from '../../../components/Callout.astro';
+import IsingSim from './figures/IsingSim.tsx';
+
+## The model
+
+Place a spin $s_i \in \{-1, +1\}$ on each site of an $L \times L$ square lattice with periodic boundaries.
+The energy of a configuration $\mathbf{s}$ is
+
+$$
+H(\mathbf{s}) = -J \sum_{\langle i j \rangle} s_i s_j - h \sum_i s_i,
+$$
+
+where $\langle ij \rangle$ runs over nearest-neighbor pairs. In equilibrium at temperature $T$, configurations
+appear with Boltzmann probability $\pi(\mathbf{s}) \propto e^{-\beta H(\mathbf{s})}$, $\beta = 1/k_B T$.
+Below we set $J = k_B = 1$ and $h = 0$.
+
+## Sampling with Metropolis
+
+There are $2^{L^2}$ configurations, so the partition function cannot be summed directly. Instead we build a
+Markov chain whose stationary distribution is $\pi$: propose flipping one spin, and accept with probability
+
+$$
+A(\mathbf{s} \to \mathbf{s}') = \min\!\left(1,\; e^{-\beta \Delta E}\right).
+$$
+
+<Derivation title="Why this works: detailed balance">
+
+A sufficient condition for $\pi$ to be stationary is **detailed balance**,
+$\pi(\mathbf{s})\,P(\mathbf{s}\to\mathbf{s}') = \pi(\mathbf{s}')\,P(\mathbf{s}'\to\mathbf{s})$.
+With a symmetric proposal, $P = g\,A$ and $g$ cancels. Suppose $\Delta E = H(\mathbf{s}') - H(\mathbf{s}) > 0$. Then
+
+$$
+\frac{A(\mathbf{s}\to\mathbf{s}')}{A(\mathbf{s}'\to\mathbf{s})} = \frac{e^{-\beta\Delta E}}{1}
+= \frac{\pi(\mathbf{s}')}{\pi(\mathbf{s})}.
+$$
+
+The case $\Delta E < 0$ is symmetric. Summing detailed balance over $\mathbf{s}$ shows that $\pi$ is
+invariant under the chain.
+
+</Derivation>
+
+Flipping spin $k$ changes the energy by only a local amount,
+
+$$
+\Delta E_k = 2 s_k \sum_{j \in \partial k} s_j \;\in\; \{-8, -4, 0, 4, 8\},
+$$
+
+so the two non-trivial acceptance probabilities $e^{-4\beta}$ and $e^{-8\beta}$ can be precomputed.
+
+## Exact result
+
+Onsager (1944) solved the model exactly. The critical temperature is $T_c = 2/\ln(1+\sqrt{2}) \approx 2.269$,
+and Yang (1952) derived the spontaneous magnetization:
+
+<Callout kind="result" title="Result">
+
+$$
+M(T) = \begin{cases}
+\left[1 - \sinh^{-4}(2/T)\right]^{1/8}, & T < T_c, \\
+0, & T \ge T_c.
+\end{cases}
+$$
+
+</Callout>
+
+## Try it
+
+Start below $T_c$ from a random state and watch domains coarsen. Slowly raise $T$ through $T_c$: fluctuations
+appear at every length scale, and the measured $\langle|m|\rangle$ (orange) follows Onsager's curve.
+On a finite lattice $|m|$ stays slightly above zero for $T > T_c$, which is a finite-size effect.
+
+<Figure caption="Live Metropolis simulation on a 96 × 96 periodic lattice. ⟨|m|⟩ is a running average over the last 300 frames, and it resets when T changes.">
+  <IsingSim client:visible />
+</Figure>

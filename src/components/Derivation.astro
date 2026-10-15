@@ -1,0 +1,51 @@
+---
+/** Collapsible block for step-by-step math. Closed by default. */
+interface Props {
+  title?: string;
+  open?: boolean;
+}
+const { title = 'Derivation', open = false } = Astro.props;
+---
+
+<details class="derivation" open={open}>
+  <summary>
+    <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    {title}
+  </summary>
+  <div class="content"><slot /></div>
+</details>
+
+<style>
+  .derivation {
+    margin: 1.5rem 0;
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    background: var(--surface);
+  }
+  summary {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    list-style: none;
+    padding: 0.7rem 1rem;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary svg {
+    transition: transform 0.15s;
+    color: var(--ink-3);
+  }
+  details[open] summary svg {
+    transform: rotate(90deg);
+  }
+  .content {
+    padding: 0 1.25rem 0.5rem;
+    border-top: 1px solid var(--rule);
+  }
+</style>

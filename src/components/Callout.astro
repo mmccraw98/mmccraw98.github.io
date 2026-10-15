@@ -1,0 +1,39 @@
+---
+/** Highlight a key result, note, or caveat. */
+interface Props {
+  title?: string;
+  kind?: 'result' | 'note';
+}
+const { title, kind = 'note' } = Astro.props;
+---
+
+<aside class:list={['callout', kind]}>
+  {title && <p class="title">{title}</p>}
+  <slot />
+</aside>
+
+<style>
+  .callout {
+    margin: 1.75rem 0;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius);
+    background: var(--surface-2);
+    border: 1px solid var(--rule);
+  }
+  .callout.result {
+    background: var(--accent-wash);
+    border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+  }
+  .title {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    margin: 0 0 0.35rem !important;
+  }
+  .callout > :global(:last-child) {
+    margin-bottom: 0;
+  }
+</style>

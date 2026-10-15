@@ -1,0 +1,53 @@
+---
+/**
+ * Numbered figure wrapper. Put anything inside: an image, a <Video>, or an
+ * interactive island like <MyPlot client:visible />.
+ */
+interface Props {
+  caption?: string;
+  id?: string;
+}
+const { caption, id } = Astro.props;
+---
+
+<figure class="figure" id={id}>
+  <div class="frame"><slot /></div>
+  {(caption || Astro.slots.has('caption')) && (
+    <figcaption>
+      <slot name="caption">{caption}</slot>
+    </figcaption>
+  )}
+</figure>
+
+<style>
+  .figure {
+    margin: 2rem 0 2.25rem;
+    counter-increment: figure;
+  }
+  .frame {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 1rem;
+    overflow: hidden;
+  }
+  .frame > :global(img),
+  .frame > :global(video) {
+    display: block;
+    margin: 0 auto;
+    border-radius: 6px;
+  }
+  figcaption {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--ink-2);
+    margin-top: 0.65rem;
+    max-width: var(--measure);
+  }
+  figcaption::before {
+    content: 'Figure ' counter(figure) '. ';
+    font-weight: 650;
+    color: var(--ink);
+  }
+</style>
